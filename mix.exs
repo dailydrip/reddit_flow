@@ -20,6 +20,8 @@ defmodule RedditFlow.Mixfile do
     [
       {:flow, "~> 0.11"},
       {:faker, "~> 0.7"},
+      {:poison, "~> 3.1.0"},
+      {:httpoison, "~> 0.11.0"},
     ]
   end
 end

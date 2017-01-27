@@ -23,8 +23,8 @@ RedditFlow.FakeSubreddit.stream
 
 ## Usage
 
-To see a sorted list of most frequently used words in a fake subreddit:
+To see a sorted list of most frequently used words in a subreddit:
 
 ```elixir
-TableAggregator.run["fake3"] |> Enum.sort_by fn({_, value}) -> -value end
+TableAggregator.run["all"] |> Enum.sort_by fn({_, value}) -> -value end
 ```
