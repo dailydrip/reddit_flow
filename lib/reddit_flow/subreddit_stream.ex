@@ -1,9 +1,9 @@
 defmodule RedditFlow.SubredditStream do
   @reddit_base_url "https://www.reddit.com/r"
-  def stream do
+  def stream(subreddit) do
     Stream.resource(
       &init/0,
-      &continue/1,
+      &continue(subreddit, &1),
       &halt/1
     )
   end
@@ -12,11 +12,7 @@ defmodule RedditFlow.SubredditStream do
     :start
   end
 
-  def subreddit_name do
-    "elixir"
-  end
-
-  def continue(:start) do
+  def continue(subreddit_name, :start) do
     {:ok, response} = HTTPoison.get(reddit_url(subreddit_name, :start))
     posts = Poison.decode!(response.body)
 
@@ -25,7 +21,7 @@ defmodule RedditFlow.SubredditStream do
       {:after, posts["data"]["after"]}
     }
   end
-  def continue({:after, id}) do
+  def continue(subreddit_name, {:after, id}) do
     :timer.sleep 1_000
 
     {:ok, response} = HTTPoison.get(reddit_url(subreddit_name, id))

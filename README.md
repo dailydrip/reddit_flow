@@ -28,3 +28,22 @@ To see a sorted list of most frequently used words in a subreddit:
 ```elixir
 TableAggregator.run["all"] |> Enum.sort_by fn({_, value}) -> -value end
 ```
+
+
+
+
+
+
+
+- Start the application
+- Reddit.watch("elixir")
+- look at the tables, elixir stuff is being wordcounted
+- Reddit.watch("elm")
+- look at the tables, elm stuff is being wordcounted
+
+
+
+- 1 supervisor
+  - spawns new tree for each subreddit
+    - 1 process that holds the stream and lets it go
+      - stream writes in a table that is spawned separately

@@ -4,7 +4,6 @@ defmodule RedditFlow.TableAggregator do
     |> Enum.filter(&filter_to_words_tables/1)
     |> Enum.flat_map(&:ets.tab2list/1)
     |> consolidate_duplicates
-    |> IO.inspect
   end
 
   def filter_to_words_tables(tab) do

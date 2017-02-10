@@ -1,18 +1,5 @@
 defmodule RedditFlow do
-  @moduledoc """
-  Documentation for RedditFlow.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> RedditFlow.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def monitor_subreddit(subreddit) do
+    RedditFlow.SubredditSupervisor.start_child(subreddit)
   end
 end
